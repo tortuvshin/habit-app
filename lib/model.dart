@@ -1,12 +1,12 @@
 import 'dart:async';
 import 'dart:collection';
 
-import 'package:Habo/helpers.dart';
-import 'package:Habo/widgets/habit.dart';
+import 'package:Habit/helpers.dart';
+import 'package:Habit/widgets/habit.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
-class HaboModel {
+class HabitModel {
   Database db;
 
   Future<void> deleteEvent(int id, DateTime dateTime) async {
@@ -80,7 +80,7 @@ class HaboModel {
 
   Future<void> initDatabase() async {
     db = await openDatabase(
-      join(await getDatabasesPath(), 'habo_db0.db'),
+      join(await getDatabasesPath(), 'Habit_db0.db'),
       onCreate: (db, version) {
         db.execute(
           "CREATE TABLE habits(id INTEGER PRIMARY KEY AUTOINCREMENT, position INTEGER, title TEXT, twoDayRule INTEGER, cue TEXT, routine TEXT, reward TEXT, showReward INTEGER, advanced INTEGER, notification INTEGER, notTime TEXT);",

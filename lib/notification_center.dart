@@ -10,7 +10,7 @@ class NotificationCetner {
 
   void setNotification(TimeOfDay time) async {
     await _dailyNotification(
-        0, time, 'Habo', 'Do not forget to check your habits.');
+        0, time, 'Habit', 'Do not forget to check your habits.');
   }
 
   void setHabitNotification(
@@ -27,10 +27,9 @@ class NotificationCetner {
     var time = Time(timeOfDay.hour, timeOfDay.minute, 0);
     await flutterLocalNotificationsPlugin.cancel(id);
     var androidPlatformChannelSpecifics = AndroidNotificationDetails(
-        'Habo: 0', 'Habo: Habo', 'Habo: Minimalistic habit tracker');
+        'Habit: 0', 'Habit: Habit', 'Habit: Minimalistic habit tracker');
     var iOSPlatformChannelSpecifics = IOSNotificationDetails();
-    var platformChannelSpecifics = NotificationDetails(
-        androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
+    var platformChannelSpecifics = NotificationDetails(android: androidPlatformChannelSpecifics, iOS: iOSPlatformChannelSpecifics);
     await flutterLocalNotificationsPlugin.showDailyAtTime(
         id, title, desc, time, platformChannelSpecifics);
   }
@@ -40,7 +39,7 @@ class NotificationCetner {
         new AndroidInitializationSettings('app_icon');
     initializationSettingsIOS = new IOSInitializationSettings();
     initializationSettings = new InitializationSettings(
-        initializationSettingsAndroid, initializationSettingsIOS);
+        android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
     flutterLocalNotificationsPlugin.initialize(initializationSettings,
         onSelectNotification: null);
   }

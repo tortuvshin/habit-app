@@ -1,6 +1,6 @@
-import 'package:Habo/helpers.dart';
-import 'package:Habo/provider.dart';
-import 'package:Habo/widgets/habit.dart';
+import 'package:Habit/helpers.dart';
+import 'package:Habit/provider.dart';
+import 'package:Habit/widgets/habit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';

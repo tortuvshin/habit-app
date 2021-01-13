@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'dart:collection';
 
-import 'package:Habo/provider.dart';
-import 'package:Habo/widgets/edit_page.dart';
+import 'package:Habit/provider.dart';
+import 'package:Habit/widgets/edit_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

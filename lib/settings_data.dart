@@ -1,5 +1,5 @@
-import 'package:Habo/helpers.dart';
-import 'package:Habo/themes.dart';
+import 'package:Habit/helpers.dart';
+import 'package:Habit/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 

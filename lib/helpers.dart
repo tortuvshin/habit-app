@@ -1,5 +1,5 @@
-import 'package:Habo/widgets/create_page.dart';
-import 'package:Habo/widgets/settings_page.dart';
+import 'package:Habit/widgets/create_page.dart';
+import 'package:Habit/widgets/settings_page.dart';
 import 'package:flutter/material.dart';
 
 Future navigateToSettingsPage(context) async {

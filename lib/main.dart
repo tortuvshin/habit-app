@@ -1,15 +1,15 @@
-import 'package:Habo/helpers.dart';
-import 'package:Habo/provider.dart';
-import 'package:Habo/widgets/calendar_column.dart';
-import 'package:Habo/widgets/loading.dart';
+import 'package:Habit/helpers.dart';
+import 'package:Habit/provider.dart';
+import 'package:Habit/widgets/calendar_column.dart';
+import 'package:Habit/widgets/loading.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
-void main() => runApp(Habo());
+void main() => runApp(Habit());
 
-class Habo extends StatelessWidget {
+class Habit extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
@@ -45,7 +45,7 @@ class HomeScreen extends StatelessWidget {
       key: Provider.of<Bloc>(context).getScafoldKey,
       appBar: AppBar(
           title: Text(
-            "Habo",
+            "Habit",
             style: Theme.of(context).textTheme.headline5,
           ),
           backgroundColor: Colors.transparent,

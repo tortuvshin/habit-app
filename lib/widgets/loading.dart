@@ -13,7 +13,7 @@ class LoadingScreen extends StatelessWidget {
         children: <Widget>[
           Image.asset('assets/images/icon.png',
           width: 72,),
-          Text("Habo", style: Theme.of(context).textTheme.headline5,),
+          Text("Habit", style: Theme.of(context).textTheme.headline5,),
         ],
       )),
     ));

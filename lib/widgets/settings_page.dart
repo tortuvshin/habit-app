@@ -1,4 +1,4 @@
-import 'package:Habo/provider.dart';
+import 'package:Habit/provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -122,12 +122,12 @@ class Settings extends StatelessWidget {
                           width: 55,
                           height: 55,
                         ),
-                        applicationName: 'Habo',
+                        applicationName: 'Habit',
                         applicationVersion:
                             Provider.of<Bloc>(context, listen: false)
                                 .getPackageInfo
                                 .version,
-                        applicationLegalese: '©2020 Habo',
+                        applicationLegalese: '©2020 Habit',
                         children: <Widget>[
                           Padding(
                             padding: EdgeInsets.only(top: 15),
@@ -141,7 +141,7 @@ class Settings extends StatelessWidget {
                                     recognizer: TapGestureRecognizer()
                                       ..onTap = () async {
                                         final url =
-                                            'https://habo.space/terms.html#terms';
+                                            'https://Habit.space/terms.html#terms';
                                         if (await canLaunch(url)) {
                                           await launch(
                                             url,
@@ -156,7 +156,7 @@ class Settings extends StatelessWidget {
                                     recognizer: TapGestureRecognizer()
                                       ..onTap = () async {
                                         final url =
-                                            'https://habo.space/terms.html#privacy';
+                                            'https://Habit.space/terms.html#privacy';
                                         if (await canLaunch(url)) {
                                           await launch(
                                             url,
@@ -172,7 +172,7 @@ class Settings extends StatelessWidget {
                                     recognizer: TapGestureRecognizer()
                                       ..onTap = () async {
                                         final url =
-                                            'https://habo.space/terms.html#disclaimer';
+                                            'https://Habit.space/terms.html#disclaimer';
                                         if (await canLaunch(url)) {
                                           await launch(
                                             url,

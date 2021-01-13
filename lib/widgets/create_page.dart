@@ -1,5 +1,5 @@
-import 'package:Habo/provider.dart';
-import 'package:Habo/widgets/text_container.dart';
+import 'package:Habit/provider.dart';
+import 'package:Habit/widgets/text_container.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

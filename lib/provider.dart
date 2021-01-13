@@ -1,10 +1,10 @@
 import 'dart:collection';
 import 'dart:convert';
 
-import 'package:Habo/model.dart';
-import 'package:Habo/notification_center.dart';
-import 'package:Habo/settings_data.dart';
-import 'package:Habo/widgets/habit.dart';
+import 'package:Habit/model.dart';
+import 'package:Habit/notification_center.dart';
+import 'package:Habit/settings_data.dart';
+import 'package:Habit/widgets/habit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info/package_info.dart';
@@ -12,7 +12,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class Bloc with ChangeNotifier {
-  final HaboModel _haboModel = HaboModel();
+  final HabitModel _HabitModel = HabitModel();
   final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   SettingsData settingsData = new SettingsData();
   final GlobalKey<ScaffoldState> _scafoldKey = new GlobalKey<ScaffoldState>();
@@ -83,8 +83,8 @@ class Bloc with ChangeNotifier {
     settingsData.setDailyNot = value;
     _prefs.then((SharedPreferences prefs) {
       var st = settingsData.toJson().toString();
-      prefs.remove('habo_settings');
-      prefs.setString('habo_settings', st);
+      prefs.remove('Habit_settings');
+      prefs.setString('Habit_settings', st);
     });
     _notificationCenter.setNotification(settingsData.getDailyNot);
     notifyListeners();
@@ -94,8 +94,8 @@ class Bloc with ChangeNotifier {
     settingsData.setShowDailyNot = value;
     _prefs.then((SharedPreferences prefs) {
       var st = settingsData.toJson().toString();
-      prefs.remove('habo_settings');
-      prefs.setString('habo_settings', st);
+      prefs.remove('Habit_settings');
+      prefs.setString('Habit_settings', st);
     });
     if (value) {
       _notificationCenter.setNotification(settingsData.getDailyNot);
@@ -109,8 +109,8 @@ class Bloc with ChangeNotifier {
     settingsData.setTheme = value;
     _prefs.then((SharedPreferences prefs) {
       var st = settingsData.toJson().toString();
-      prefs.remove('habo_settings');
-      prefs.setString('habo_settings', st);
+      prefs.remove('Habit_settings');
+      prefs.setString('Habit_settings', st);
     });
     notifyListeners();
   }
@@ -119,14 +119,14 @@ class Bloc with ChangeNotifier {
     settingsData.setWeekStart = value;
     _prefs.then((SharedPreferences prefs) {
       var st = settingsData.toJson().toString();
-      prefs.remove('habo_settings');
-      prefs.setString('habo_settings', st);
+      prefs.remove('Habit_settings');
+      prefs.setString('Habit_settings', st);
     });
     notifyListeners();
   }
 
   addEvent(int id, DateTime dateTime, List event) {
-    _haboModel.inserEvent(id, dateTime, event);
+    _HabitModel.inserEvent(id, dateTime, event);
   }
 
   addHabit(
@@ -152,11 +152,11 @@ class Bloc with ChangeNotifier {
       notification: notification,
       notTime: notTime,
     );
-    _haboModel.insertHabit(newHabit).then((id) {
+    _HabitModel.insertHabit(newHabit).then((id) {
       newHabit.setId = id;
       allHabits.add(newHabit);
       if (notification)
-        _notificationCenter.setHabitNotification(id, notTime, 'Habo', title);
+        _notificationCenter.setHabitNotification(id, notTime, 'Habit', title);
       else
         _notificationCenter.disableNotification(id);
       notifyListeners();
@@ -165,13 +165,13 @@ class Bloc with ChangeNotifier {
   }
 
   deleteEvent(int id, DateTime dateTime) {
-    _haboModel.deleteEvent(id, dateTime);
+    _HabitModel.deleteEvent(id, dateTime);
   }
 
   Future<void> deleteFromDB() async {
     if (toDelete.isNotEmpty) {
       _notificationCenter.disableNotification(toDelete.first.id);
-      _haboModel.deleteHabit(toDelete.first.id);
+      _HabitModel.deleteHabit(toDelete.first.id);
       toDelete.removeFirst();
     }
     if (toDelete.isNotEmpty) {
@@ -220,9 +220,9 @@ class Bloc with ChangeNotifier {
     hab.advanced = advanced;
     hab.notification = notification;
     hab.notTime = notTime;
-    _haboModel.editHabit(hab);
+    _HabitModel.editHabit(hab);
     if (notification)
-      _notificationCenter.setHabitNotification(id, notTime, 'Habo', title);
+      _notificationCenter.setHabitNotification(id, notTime, 'Habit', title);
     else
       _notificationCenter.disableNotification(id);
     notifyListeners();
@@ -243,8 +243,8 @@ class Bloc with ChangeNotifier {
   }
 
   initModel() async {
-    await _haboModel.initDatabase();
-    allHabits = await _haboModel.getAllHabits();
+    await _HabitModel.initDatabase();
+    allHabits = await _HabitModel.getAllHabits();
     dataLoaded = true;
     notifyListeners();
   }
@@ -255,7 +255,7 @@ class Bloc with ChangeNotifier {
 
   initSettings() async {
     await _prefs.then((SharedPreferences prefs) {
-      String savedSettings = (prefs.getString('habo_settings') ?? '');
+      String savedSettings = (prefs.getString('Habit_settings') ?? '');
       if (savedSettings != '') {
         var json = jsonDecode(savedSettings);
         settingsData = SettingsData.fromJson(json);
@@ -275,7 +275,7 @@ class Bloc with ChangeNotifier {
     Habit _x = allHabits.removeAt(oldIndex);
     allHabits.insert(newIndex, _x);
     updateOrder();
-    _haboModel.updateOrder(allHabits);
+    _HabitModel.updateOrder(allHabits);
     notifyListeners();
   }
 
